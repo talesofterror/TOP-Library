@@ -16,7 +16,6 @@
 body {
 	color: white;
 	background: #fff;
-	/* height: 100vh; */
 }
 
 body * {
@@ -29,8 +28,8 @@ body * {
 	background-color: white;
 	color: black;
 	display: flex;
-	height: 100%;
 	width: 70%;
+	min-width: 500px;
 	margin: 0px auto;
 }
 
@@ -54,14 +53,16 @@ body * {
 }
 
 .book-area {
-	flex-grow: 2;
+	/* flex-grow: 1; */
 	display: grid;
-	align-items: center;
-	grid-template-rows: 1fr;
+	/* gap: 30%; */
+	justify-items: center;
+	grid-auto-rows: 200px;
 	grid-template-columns: repeat(3, 1fr);
 	width: 100%;
 	border: 2px solid black;
-	border-bottom: 0px;
+	/* border-bottom: 0px; */
+	padding: 5% 10%;
 }
 
 .book-entry { 
