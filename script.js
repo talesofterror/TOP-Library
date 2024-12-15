@@ -52,3 +52,9 @@ function refreshLibrary() {
 		console.log(index + ": " + book.name + " by " + book.author)
 	}
 }
+
+// for a possible color change function
+Number(12).toString(16)
+// converts the number 12 to its hexadecimal representation
+
+

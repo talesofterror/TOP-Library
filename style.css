@@ -8,6 +8,13 @@
  * 
  */
 
+
+/*
+ * probably the entire page should be occupied by a grid
+ * that stretches downward from the middle. 
+ *
+ */
+
 * {
 	box-sizing: border-box;
 }
