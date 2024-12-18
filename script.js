@@ -72,6 +72,12 @@ function deleteBook (index) {
 	library.splice(index, index)
 }
 
+let addBookDialogue = document.getElementById("add-book-dialog")
+
+function showDialogue () {
+	addBookDialogue.showModal()
+}
+
 // for a possible color change function
 Number(12).toString(16)
 // converts the number 12 to its hexadecimal representation
