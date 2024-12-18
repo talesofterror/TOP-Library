@@ -78,24 +78,36 @@
 	<dialog id="add-book-dialog">
 		
 		<form action="index.html">
+			<fieldset>				
+				<legend>Add a book</legend>
 
-		<label for="BookTitle" id="book-title">Book Title:</label>
-		<input type="text" id="BookTitle">
+				<div class="form-group">
+				<label for="BookTitle" id="book-title">Book Title:</label>
+				<input type="text" name="BookTitle" id="add-book-dialog-title">
+				</div>
 
-		<label for="BookAuthor" id="book-author">Author Name:</label>
-		<input type="text" id="BookAuthor">
+				<div class="form-group">
+				<label for="BookAuthor" id="book-author">Author Name:</label>
+				<input type="text" name="BookAuthor" id="add-book-dialog-author">
+				</div>
 
-		<label for="BookPages" id="book-pages">Number of pages:</label>
-		<input type="text" id="BookPages">
+				<div class="form-group">
+				<label for="BookPages" id="book-pages">Number of pages:</label>
+				<input type="text" name="BookPages" id="add-book-dialog-pages">
+				</div>
 
-		<label for="BookDescription" id="book-description">Description:</label>
-		<input type="text" id="BookDescription">
+				<div class="form-group">
+				<label for="BookDescription" id="book-description">Description:</label>
+				<input type="text" name="BookDescription" id="add-book-dialog-description">
+				</div>
+			</fieldset>
+
 		
-		<button>Add.</button>
+			<button>+</button>
 
 		</form>
 
-	<dialog>
+	</dialog>
 	
 	<script src="script.js"></script>
 	</body>

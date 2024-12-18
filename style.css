@@ -9,12 +9,6 @@
  */
 
 
-/*
- * probably the entire page should be occupied by a grid
- * that stretches downward from the middle. 
- *
- */
-
 * {
 	box-sizing: border-box;
 }
@@ -35,6 +29,9 @@ body {
 }
 
 .top-bar {
+	position: sticky;
+	top: 0px;
+	background-color: white;
 	grid-area: 2 / 2 / 3 / 3;
 	display: flex;
 	justify-content: space-around;
@@ -48,6 +45,14 @@ body {
 	display: flex;
 	align-items: end;
 	justify-content: center;
+}
+
+.top-bar button {
+	background-color: white;
+	font-size: 2em;
+	margin-bottom: 3%;
+	padding: 0;
+	border: 0;
 }
 
 .top-bar-sideline {
@@ -74,14 +79,6 @@ body {
 	width: 35%;
 }
 
-button {
-	background-color: white;
-	font-size: 2em;
-	margin-bottom: 3%;
-	padding: 0;
-	border: 0;
-}
-
 .book-area {
 	grid-area: 3 / 2 / 4 / 3;
 	justify-self: center;
@@ -98,15 +95,17 @@ button {
 
 .book-entry { 
 	display: grid;
-	grid-template: 1.5fr 2fr 1em / 1fr 1fr;
+	grid-template-rows: 1.5fr 2fr 1em;
+	grid-template-columns: minmax(1fr 50px) 1fr;
 	width: 18vw;
 	min-height: 200px;
 	border: 1px solid black;
-	padding: 5px;
+	padding: 1em;
 }
 
 .book-entry-icon {
 	grid-area: 1 / 1 / 2 / 2;
+	max-width: 50px;
 }
 
 .book-entry-info {
@@ -128,7 +127,9 @@ button {
 
 .book-entry-description {
 	grid-area: 2 / 1 / 3 / 3;
+	display: block;
 	margin-top: 1em;
+	text-align: justify;
 }
 
 .book-entry-readstatus {
@@ -136,6 +137,7 @@ button {
 }
 
 dialog {
+	width: 25vw;
 	border: 2px solid black;
 }
 
@@ -143,7 +145,39 @@ dialog::backdrop {
 	backdrop-filter: blur(5px);
 }
 
-form>button {
+form {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+form button {
+	width: 5vw;
 	display: block;
 	font-size: 1em;
+	align-self: end;
+	margin-top: 1em;
+}
+
+.form-group {
+	width: 100%;
+	display: flex;
+	justify-items: center;
+	margin-bottom: 1em;
+}
+
+.form-group input {
+	flex-grow: 2;
+	border: 0;
+	border-bottom: 1px solid black;
+	outline: 0;
+}
+
+.form-group label {
+	margin-right: 1em;
+}
+
+legend {
+	font-size: 2em;
+	margin-bottom: 1em;
 }

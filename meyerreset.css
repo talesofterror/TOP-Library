@@ -41,3 +41,10 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+/* added */
+button {
+	outline: none;
+	appearance: none;
+	-webkit-appearance: none;
+}
