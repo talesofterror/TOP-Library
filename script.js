@@ -1,3 +1,5 @@
+"use strict"
+
 console.log("hi")
 
 /* 
@@ -36,50 +38,44 @@ function Book(name, author) {
 	this.description = undefined
 	this.setPages = (pages) => {
 		this.pages = pages
-		return this
 	}
 	this.SetReadStatus = (status) => {
 		this.readStatus = status
-		return this
 	}
 	this.SetDescription = (description) => {
 		this.description = description
-		return this
 	}
 }
 
-// more parameters?
-function addBook (name, author) {
-	let newBook = new Book(name, author)
-	library.push(newBook)
-}
 
-addBook("Le Miserable", "Hugo Boss")
-library[0].SetDescription("This is the description for the miserables")
-library[0].setPages(2000)
-library[0].SetReadStatus(true)
-addBook("There and Back Again", "Bilbo Baggins")
-addBook("The Necronomicon", "Bruce Campbell")
-
-const bookArea = document.getElementById("book-area")
+let bookArea = document.getElementById("book-area")
 
 function refreshLibrary() {
-	bookArea.innerHTML = "";
+	bookArea.innerHTML = ""
 
 	for (const [index, book] of library.entries()) {
 		console.log(index + ": " + book.name + " by " + book.author)
 
-		const entry = document.createElement("div")
-		entry.classList.add("book-entry")
-		bookArea.appendChild(entry)
+		let entry = createEntryElement("book-entry")
+		let entryIcon = createEntryElement("book-entry-icon")
+		let entryInfo = createEntryElement("book-entry-info")
+		let entryDescription = createEntryElement("book-entry-description")
+		let entryReadStatus = createEntryElement("book-entry-readstatus")
 
-		const entryInfo = document.createElement("div")
-		entryInfo.classList.add("book-entry-info")
-		entry.appendChild(entryInfo)
+		appendEntryElements(bookArea, entry)
+		appendEntryElements(entry, entryIcon, entryInfo, entryDescription, entryReadStatus)
 
-		const entryTitle = document.createElement("div")
-		const entryAuthor = document.createElement("div")
-		const entryPages = document.createElement("div")
+		let entryInfoTitle = createEntryElement("book-entry-info-title")
+		let entryInfoAuthor = createEntryElement("book-entry-info-author")
+		let entryInfoPages = createEntryElement("book-entry-info-pages")
+		appendEntryElements(entryInfo, entryInfoTitle, entryInfoAuthor, entryInfoPages)
+
+		entryInfoTitle.textContent = book.name
+		entryInfoAuthor.textContent = book.author
+		entryInfoPages.textContent = book.pages
+		entryDescription.textContent = book.description
+		entryReadStatus.textContent = book.readStatus ? "Read" : "Unread"
+
 	}
 }
 
@@ -99,14 +95,48 @@ function deleteBook (index) {
 	library.splice(index, index)
 }
 
-let addBookDialogue = document.getElementById("add-book-dialog")
+let addBookDialog = document.getElementById("add-book-dialog")
 
 function showDialogue () {
-	addBookDialogue.showModal()
+	addBookDialog.showModal()
+}
+
+let inputBookTitle = document.getElementById("add-book-dialog-title")
+let inputBookAuthor = document.getElementById("add-book-dialog-author")
+let inputBookPages = document.getElementById("add-book-dialog-pages")
+let inputBookDescription = document.getElementById("add-book-dialog-description")
+let inputBookReadStatus = document.getElementById("add-book-dialog-readstatus") 
+inputBookReadStatus.value = false;
+let inputAddButton = document.getElementById("add-book-dialog-button")
+
+inputAddButton.addEventListener("click", (e) => {
+	e.preventDefault()
+})
+
+// more parameters?
+function addBook (name, author) {
+	let newBook = new Book(name, author)
+	library.push(newBook)
+}
+
+function inputAddBook () {
+	let newBook = new Book(inputBookAuthor.value, inputBookPages.value)
+	newBook.pages = inputBookPages.value
+	newBook.description = inputBookDescription.value
+	newBook.readStatus = inputBookReadStatus.checked // .value is not related to whether the box is checked. .checked is
+	library.push(newBook)
+	refreshLibrary()
+	addBookDialog.close()
 }
 
 // for a possible color change function
 Number(12).toString(16)
 // converts the number 12 to its hexadecimal representation
 
+addBook("Le Miserable", "Hugo Boss")
+library[0].SetDescription("This is the description for the miserables")
+library[0].setPages(2000)
+library[0].SetReadStatus(true)
+addBook("There and Back Again", "Bilbo Baggins")
+addBook("The Necronomicon", "Bruce Campbell")
 
