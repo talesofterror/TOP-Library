@@ -61,10 +61,37 @@ library[0].SetReadStatus(true)
 addBook("There and Back Again", "Bilbo Baggins")
 addBook("The Necronomicon", "Bruce Campbell")
 
-// Create entry html element in the function below?
+const bookArea = document.getElementById("book-area")
+
 function refreshLibrary() {
+	bookArea.innerHTML = "";
+
 	for (const [index, book] of library.entries()) {
 		console.log(index + ": " + book.name + " by " + book.author)
+
+		const entry = document.createElement("div")
+		entry.classList.add("book-entry")
+		bookArea.appendChild(entry)
+
+		const entryInfo = document.createElement("div")
+		entryInfo.classList.add("book-entry-info")
+		entry.appendChild(entryInfo)
+
+		const entryTitle = document.createElement("div")
+		const entryAuthor = document.createElement("div")
+		const entryPages = document.createElement("div")
+	}
+}
+
+function createEntryElement (className) {
+	const element = document.createElement("div")
+	element.classList.add(className)
+	return element
+}
+
+function appendEntryElements (target, ...elements) {
+	for (const e of elements) {
+		target.appendChild(e)
 	}
 }
 
