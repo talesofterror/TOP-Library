@@ -31,11 +31,26 @@ let library = []
 // can i create a chain function for pages, 
 // redStatus and description? 
 function Book(name, author) {
-	this.name = name
-	this.author = author
-	this.pages = undefined
-	this.readStatus = undefined
-	this.description = undefined
+	this.name = {
+		value: name,
+		element: createEntryElement("book-entry-info-title")
+	},
+	this.author = {
+		value: author,
+		element: createEntryElement("book-entry-info-author")
+	},
+	this.pages = {
+		value: undefined,
+		element: createEntryElement("book-entry-info-pages")
+	},
+	this.readStatus = {
+		value: undefined,
+		element: createEntryElement("book-entry-info-readstatus")
+	},
+	this.description = {
+		value: undefined,
+		element: createEntryElement("book-entry-info-description")
+	},
 	this.setPages = (pages) => {
 		this.pages = pages
 	}
@@ -44,8 +59,15 @@ function Book(name, author) {
 	}
 	this.SetDescription = (description) => {
 		this.description = description
+	},
+	this.entryContainer = createEntryElement("book-entry")
+	this.entryInfoContainer = createEntryElement("book-entry-info")
+	this.entryIcon = {
+		element: createEntryElement("book-entry-icon"),
+		img: document.createElement("img")
 	}
 }
+
 
 
 let bookArea = document.getElementById("book-area")
@@ -56,26 +78,17 @@ function refreshLibrary() {
 	for (const [index, book] of library.entries()) {
 		console.log(index + ": " + book.name + " by " + book.author)
 
-		let entry = createEntryElement("book-entry")
-		let entryIcon = createEntryElement("book-entry-icon")
-		let entryInfo = createEntryElement("book-entry-info")
-		let entryDescription = createEntryElement("book-entry-description")
-		let entryReadStatus = createEntryElement("book-entry-readstatus")
+		appendEntryElements(bookArea, book.entryContainer)
+		appendEntryElements(book.entryContainer, book.entryIcon.element, book.entryInfoContainer, book.description.element, book.readStatus.element)
 
-		appendEntryElements(bookArea, entry)
-		appendEntryElements(entry, entryIcon, entryInfo, entryDescription, entryReadStatus)
+		appendEntryElements(book.entryInfoContainer, book.name.value, book.author.value, book.pages.value)
+		appendEntryElements(book.entryIcon.element, book.entryIcon.img)
 
-		let entryInfoTitle = createEntryElement("book-entry-info-title")
-		let entryInfoAuthor = createEntryElement("book-entry-info-author")
-		let entryInfoPages = createEntryElement("book-entry-info-pages")
-		appendEntryElements(entryInfo, entryInfoTitle, entryInfoAuthor, entryInfoPages)
-
-		entryInfoTitle.textContent = book.name
-		entryInfoAuthor.textContent = book.author
-		entryInfoPages.textContent = book.pages
-		entryDescription.textContent = book.description
-		entryReadStatus.textContent = book.readStatus ? "Read" : "Unread"
-
+		book.name.element.textContent = book.name
+		book.author.element.textContent = book.author
+		book.pages.value.textContent = book.pages
+		book.description.element.textContent = book.description
+		book.readStatus.element.textContent = book.readStatus ? "Read" : "Unread"
 	}
 }
 
@@ -106,7 +119,7 @@ let inputBookAuthor = document.getElementById("add-book-dialog-author")
 let inputBookPages = document.getElementById("add-book-dialog-pages")
 let inputBookDescription = document.getElementById("add-book-dialog-description")
 let inputBookReadStatus = document.getElementById("add-book-dialog-readstatus") 
-inputBookReadStatus.value = false;
+inputBookReadStatus.checked = false;
 let inputAddButton = document.getElementById("add-book-dialog-button")
 
 inputAddButton.addEventListener("click", (e) => {
@@ -114,7 +127,7 @@ inputAddButton.addEventListener("click", (e) => {
 })
 
 // more parameters?
-function addBook (name, author) {
+function addDefaultBook (name, author) {
 	let newBook = new Book(name, author)
 	library.push(newBook)
 }
@@ -133,10 +146,10 @@ function inputAddBook () {
 Number(12).toString(16)
 // converts the number 12 to its hexadecimal representation
 
-addBook("Le Miserable", "Hugo Boss")
+addDefaultBook("Le Miserable", "Hugo Boss")
 library[0].SetDescription("This is the description for the miserables")
 library[0].setPages(2000)
 library[0].SetReadStatus(true)
-addBook("There and Back Again", "Bilbo Baggins")
-addBook("The Necronomicon", "Bruce Campbell")
+addDefaultBook("There and Back Again", "Bilbo Baggins")
+addDefaultBook("The Necronomicon", "Bruce Campbell")
 
