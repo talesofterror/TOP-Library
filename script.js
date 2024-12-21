@@ -120,7 +120,7 @@ function addBook (name, author) {
 }
 
 function inputAddBook () {
-	let newBook = new Book(inputBookAuthor.value, inputBookPages.value)
+	let newBook = new Book(inputBookTitle.value, inputBookAuthor.value)
 	newBook.pages = inputBookPages.value
 	newBook.description = inputBookDescription.value
 	newBook.readStatus = inputBookReadStatus.checked // .value is not related to whether the box is checked. .checked is

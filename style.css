@@ -10,6 +10,7 @@
 
 
 * {
+	font-size: calc(1em * 1vw);
 	box-sizing: border-box;
 }
 
@@ -109,7 +110,6 @@ body {
 }
 
 .book-entry-icon img {
-	/* display: block; */
 	max-width: 100%;
 }
 
