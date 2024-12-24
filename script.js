@@ -25,24 +25,15 @@ Book Info Expand Function
 
 */
 
-
 let library = []
 
 // can i create a chain function for pages, 
 // redStatus and description? 
 function Book(name, author) {
 
-	this.entryContainer = createEntryElement("book-entry"),
-	this.entryInfoContainer = createEntryElement("book-entry-info"),
-	this.entryInfoName = createEntryElement("book-entry-info-title"),
-	this.entryInfoAuthor = createEntryElement("book-entry-info-author"),
-	this.entryInfoPages = createEntryElement("book-entry-info-pages"),
-	this.entryDescription = createEntryElement("book-entry-description"),
-	this.entryReadStatus = createEntryElement("book-entry-readstatus"),
-
 	this.name = {
 		value: name,
-		element: this.entryInfoName
+		element: createEntryElement("book-entry-info-name")	
 	},
 	this.author = {
 		value: author,
@@ -53,18 +44,24 @@ function Book(name, author) {
 		value: undefined
 	},
 	this.description = {
-		element: this.entryDescription,
+		element: createEntryElement("book-entry-description"),
 		value: undefined
 	},
 	this.readStatus = {
+		element: createEntryElement("book-entry-readstatus"),
 		value: undefined,
-		element: createEntryElement("book-entry-readstatus")
 	},
 	this.entryIcon = {
 		element: createEntryElement("book-entry-icon"),
 		img: document.createElement("img")
-	}
+	},
+
+	this.entryContainer = createEntryElement("book-entry"),
+	this.entryInfoContainer = createEntryElement("book-entry-info")
+
 }
+
+
 
 let bookArea = document.getElementById("book-area")
 
@@ -72,24 +69,31 @@ function refreshLibrary() {
 	bookArea.innerHTML = ""
 
 	for (const [index, book] of library.entries()) {
-		console.log(index + ": " + book.name + " by " + book.author)
+		console.log(index + ": " + book.name.value + " by " + book.author.value)
 
 		appendEntryElements(bookArea, book.entryContainer)
+
 		appendEntryElements(
 			document.querySelectorAll(".book-entry")[index], 
 				book.entryIcon.element, 
 				book.entryInfoContainer, 
 				book.description.element, 
-				book.readStatus.element)
+				book.readStatus.element
+		)
 
-		appendEntryElements(book.entryInfoContainer, book.name.value, book.author.value, book.pages.value)
 		appendEntryElements(book.entryIcon.element, book.entryIcon.img)
 
-		book.name.element.textContent = book.name
-		book.author.element.textContent = book.author
-		book.pages.value.textContent = book.pages
-		book.description.element.textContent = book.description
-		book.readStatus.element.textContent = book.readStatus ? "Read" : "Unread"
+		appendEntryElements(book.entryInfoContainer, 
+			book.name.element, 
+			book.author.element, 
+			book.pages.element
+		)
+
+		book.name.element.textContent = book.name.value
+		book.author.element.textContent = book.author.value
+		book.pages.element.textContent = book.pages.value
+		book.description.element.textContent = book.description.value
+		book.readStatus.element.textContent = book.readStatus.value ? "Read" : "Unread"
 	}
 }
 
@@ -130,9 +134,9 @@ inputAddButton.addEventListener("click", (e) => {
 // more parameters?
 function addDefaultBook (name, author) {
 	let newBook = new Book(name, author)
-	newBook.pages = 100
-	newBook.description = "Default book description"
-	newBook.readStatus = true
+	newBook.pages.value = 100
+	newBook.description.value = "Default book description"
+	newBook.readStatus.value = true
 	library.push(newBook)
 }
 
@@ -153,4 +157,5 @@ Number(12).toString(16)
 addDefaultBook("Le Miserable", "Hugo Boss")
 addDefaultBook("There and Back Again", "Bilbo Baggins")
 addDefaultBook("The Necronomicon", "Bruce Campbell")
+
 
