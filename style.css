@@ -10,8 +10,7 @@
 
 
 * {
-	font-size: calc(1em * 1vw);
-	font-size: calc(1em * 1vw);
+	font-size: 1em;
 	box-sizing: border-box;
 }
 

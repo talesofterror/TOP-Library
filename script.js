@@ -26,14 +26,13 @@ Book Info Expand Function
 */
 
 let library = []
+let bookArea = document.getElementById("book-area")
 
-// can i create a chain function for pages, 
-// redStatus and description? 
 function Book(name, author) {
 
 	this.name = {
 		value: name,
-		element: createEntryElement("book-entry-info-name")	
+		element: createEntryElement("book-entry-info-title")	
 	},
 	this.author = {
 		value: author,
@@ -60,10 +59,6 @@ function Book(name, author) {
 	this.entryInfoContainer = createEntryElement("book-entry-info")
 
 }
-
-
-
-let bookArea = document.getElementById("book-area")
 
 function refreshLibrary() {
 	bookArea.innerHTML = ""
@@ -141,17 +136,10 @@ function addDefaultBook (name, author) {
 }
 
 function inputAddBook () {
-<<<<<<< HEAD
-	let newBook = new Book(inputBookTitle.value, inputBookAuthor.value)
-	newBook.pages = inputBookPages.value
-	newBook.description = inputBookDescription.value
-	newBook.readStatus = inputBookReadStatus.checked // .value is not related to whether the box is checked. .checked is
-=======
 	let newBook = new Book(inputBookAuthor.value, inputBookPages.value)
 	newBook.pages.value = inputBookPages.value
 	newBook.description.value = inputBookDescription.value
 	newBook.readStatus.value = inputBookReadStatus.checked // .value is not related to whether the box is checked. .checked is
->>>>>>> objectRefactor
 	library.push(newBook)
 	refreshLibrary()
 	addBookDialog.close()
