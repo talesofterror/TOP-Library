@@ -10,8 +10,11 @@
 
 
 * {
+<<<<<<< HEAD
 	font-size: calc(1em * 1vw);
-	font-size: calc(1em * 1vw);
+=======
+	font-size: calc(1em * 1vw)
+>>>>>>> objectRefactor
 	box-sizing: border-box;
 }
 
@@ -114,9 +117,12 @@ body {
 }
 
 .book-entry-icon img {
+<<<<<<< HEAD
 	max-width: 100%;
+=======
 	/* display: block; */
 	max-width: 50%;
+>>>>>>> objectRefactor
 }
 
 .book-entry-info {
