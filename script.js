@@ -2,29 +2,6 @@
 
 console.log("hi")
 
-/* 
-
-Library Array
-
-Book Object:
-	Title
-	Author
-	Description
-	Pages
-	Read Status
-
-Loop Function
-	Display Books
-	Update library display
-
-New Book Function
-
-Delete Book Function
-
-Book Info Expand Function
-
-*/
-
 let library = []
 let bookArea = document.getElementById("book-area")
 
@@ -136,7 +113,7 @@ function addDefaultBook (name, author) {
 }
 
 function inputAddBook () {
-	let newBook = new Book(inputBookAuthor.value, inputBookPages.value)
+	let newBook = new Book(inputBookTitle.value, inputBookAuthor.value)
 	newBook.pages.value = inputBookPages.value
 	newBook.description.value = inputBookDescription.value
 	newBook.readStatus.value = inputBookReadStatus.checked // .value is not related to whether the box is checked. .checked is

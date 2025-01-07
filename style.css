@@ -11,6 +11,7 @@
 
 * {
 	font-size: 1em;
+	font-family: serif;
 	box-sizing: border-box;
 }
 
@@ -41,7 +42,6 @@ body {
 	border-bottom: 2px solid black;
 }
 
-/* position: sticky ?? */
 .top-bar * {
 	display: flex;
 	align-items: end;
@@ -179,11 +179,27 @@ form button {
 	margin-bottom: 1em;
 }
 
+fieldset div:nth-child(5) {
+	margin-top: 2em;
+}
+
 .form-group input {
 	flex-grow: 2;
 	border: 0;
 	border-bottom: 1px solid black;
 	outline: 0;
+}
+
+.form-group textarea {
+	flex-grow: 2;
+	border: 0;
+	border: 1px solid black;
+	outline: 0;
+	resize: none;
+}
+
+.form-group input[name="BookPages"]:invalid {
+	border-color: red;
 }
 
 .form-group label {

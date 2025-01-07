@@ -83,29 +83,30 @@
 				<legend>Add a book</legend>
 
 				<div class="form-group">
-				<label for="BookTitle">Book Title:</label>
-				<input type="text" name="BookTitle" id="add-book-dialog-title">
+					<label for="BookTitle">Book Title:</label>
+					<input type="text" name="BookTitle" id="add-book-dialog-title" maxlength="50">
 				</div>
 
 				<div class="form-group">
-				<label for="BookAuthor" id="book-author">Author Name:</label>
-				<input type="text" name="BookAuthor" id="add-book-dialog-author">
+					<label for="BookAuthor" id="book-author">Author Name:</label>
+					<input type="text" name="BookAuthor" id="add-book-dialog-author" maxlength="50">
 				</div>
 
 				<div class="form-group">
-				<label for="BookPages" id="book-pages">Number of pages:</label>
-				<input type="text" name="BookPages" id="add-book-dialog-pages">
+					<label for="BookPages" id="book-pages">Number of pages:</label>
+					<input type="text" name="BookPages" id="add-book-dialog-pages" pattern="^[0-9]+$" maxlength="5">
 				</div>
 
 				<div class="form-group">
-				<label for="BookDescription" id="book-description">Description:</label>
-				<input type="text" name="BookDescription" id="add-book-dialog-description">
+					<label for="BookDescription" id="book-description">Description:</label>
+					<textarea name="BookDescription" id="add-book-dialog-description" maxlength="160" rows="4"></textarea>
 				</div>
 
 				<div class="form-group">
-				<label for="BookReadStatus">
-				<input type="checkbox" name="BookReadStatus" id="add-book-dialog-readstatus" />I've finished reading this
+					<label for="BookReadStatus">
+					<input type="checkbox" name="BookReadStatus" id="add-book-dialog-readstatus" />I've finished reading this
 				</label>
+
 				</div>
 			</fieldset>
 
