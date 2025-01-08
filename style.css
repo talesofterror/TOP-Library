@@ -98,7 +98,7 @@ body {
 .book-entry { 
 	display: grid;
 	grid-template-rows: 1.5fr 2fr 1em;
-	grid-template-columns: minmax(1fr 50px) 1fr;
+	grid-template-columns: 0.5fr 1fr;
 	width: 18vw;
 	min-height: 200px;
 	border: 1px solid black;
@@ -106,6 +106,8 @@ body {
 }
 
 .book-entry-icon {
+	width: 100%;
+	max-height: 100%;
 	display: flex;
 	justify-content: center;
 	grid-area: 1 / 1 / 2 / 2;
@@ -113,9 +115,12 @@ body {
 }
 
 .book-entry-icon img {
-	max-width: 100%;
-	/* display: block; */
-	max-width: 50%;
+	content: url("assets/BookClosed.svg");
+	max-width: 80%;
+}
+
+.book-entry-icon img:hover {
+	content: url("assets/BookOpen.svg");
 }
 
 .book-entry-info {
@@ -140,13 +145,19 @@ body {
 	display: block;
 	margin-top: 0.3em;
 	text-align: justify;
+	word-break: break-word;
 }
 
 .book-entry-readstatus {
-	grid-area: 3 / 1 / 4 / 3;
+	grid-area: 3 / 2 / 4 / 3;
 	justify-self: end;
 	font-size: 0.8em;
 	margin-top: 0.3em;
+}
+
+.book-entry-delete {
+	grid-area: 3 / 1 / 4 / 2;
+	content: "[x]";
 }
 
 dialog {
@@ -184,6 +195,7 @@ fieldset div:nth-child(5) {
 }
 
 .form-group input {
+	position: relative;
 	flex-grow: 2;
 	border: 0;
 	border-bottom: 1px solid black;
@@ -200,6 +212,15 @@ fieldset div:nth-child(5) {
 
 .form-group input[name="BookPages"]:invalid {
 	border-color: red;
+}
+
+.form-group input[name="BookPages"]:invalid+span:before {
+	right: 50px;
+	color: red;
+	font-size: 0.8em;
+	text-decoration: italic;
+	position: absolute;
+	content: "Numbers only, preferably";
 }
 
 .form-group label {

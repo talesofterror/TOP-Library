@@ -33,8 +33,9 @@ function Book(name, author) {
 	},
 
 	this.entryContainer = createEntryElement("book-entry"),
-	this.entryInfoContainer = createEntryElement("book-entry-info")
-
+	this.entryInfoContainer = createEntryElement("book-entry-info"),
+	this.entryDeleteButton = createEntryElement("book-entry-delete"),
+	this.index = 0
 }
 
 function refreshLibrary() {
@@ -50,7 +51,8 @@ function refreshLibrary() {
 				book.entryIcon.element, 
 				book.entryInfoContainer, 
 				book.description.element, 
-				book.readStatus.element
+				book.readStatus.element,
+				book.entryDeleteButton
 		)
 
 		appendEntryElements(book.entryIcon.element, book.entryIcon.img)
@@ -66,6 +68,8 @@ function refreshLibrary() {
 		book.pages.element.textContent = book.pages.value
 		book.description.element.textContent = book.description.value
 		book.readStatus.element.textContent = book.readStatus.value ? "Read" : "Unread"
+		book.entryDeleteButton.textContent = "[x]"
+		book.index = index
 	}
 }
 
