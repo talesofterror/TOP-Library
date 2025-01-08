@@ -35,6 +35,7 @@ function Book(name, author) {
 	this.entryContainer = createEntryElement("book-entry"),
 	this.entryInfoContainer = createEntryElement("book-entry-info"),
 	this.entryDeleteButton = createEntryElement("book-entry-delete"),
+	this.deleteListenerAdded = false,
 	this.index = 0
 }
 
@@ -54,6 +55,11 @@ function refreshLibrary() {
 				book.readStatus.element,
 				book.entryDeleteButton
 		)
+		
+		if (!book.deleteListenerAdded) {
+			book.deleteListenerAdded = true
+			book.entryDeleteButton.addEventListener("click", ()=> deleteBook(book.index))
+		}
 
 		appendEntryElements(book.entryIcon.element, book.entryIcon.img)
 
@@ -62,6 +68,7 @@ function refreshLibrary() {
 			book.author.element, 
 			book.pages.element
 		)
+
 
 		book.name.element.textContent = book.name.value
 		book.author.element.textContent = book.author.value
@@ -86,7 +93,9 @@ function appendEntryElements (target, ...elements) {
 }
 
 function deleteBook (index) {
-	library.splice(index, index)
+	library.splice(index, 1)
+	console.log("index number " + index)
+	refreshLibrary()
 }
 
 let addBookDialog = document.getElementById("add-book-dialog")
