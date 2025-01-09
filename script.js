@@ -35,7 +35,7 @@ function Book(name, author) {
 	this.entryContainer = createEntryElement("book-entry"),
 	this.entryInfoContainer = createEntryElement("book-entry-info"),
 	this.entryDeleteButton = createEntryElement("book-entry-delete"),
-	this.deleteListenerAdded = false,
+	this.listenersAdded = false,
 	this.index = 0
 }
 
@@ -56,12 +56,8 @@ function refreshLibrary() {
 				book.entryDeleteButton
 		)
 		
-		if (!book.deleteListenerAdded) {
-			book.deleteListenerAdded = true
-			book.entryDeleteButton.addEventListener("click", ()=> deleteBook(book.index))
-		}
-
 		appendEntryElements(book.entryIcon.element, book.entryIcon.img)
+		book.entryIcon.img.src = "assets/BookClosed.svg"
 
 		appendEntryElements(book.entryInfoContainer, 
 			book.name.element, 
@@ -69,14 +65,31 @@ function refreshLibrary() {
 			book.pages.element
 		)
 
+		addListeners(book)
 
 		book.name.element.textContent = book.name.value
 		book.author.element.textContent = book.author.value
 		book.pages.element.textContent = book.pages.value
 		book.description.element.textContent = book.description.value
 		book.readStatus.element.textContent = book.readStatus.value ? "Read" : "Unread"
-		book.entryDeleteButton.textContent = "[x]"
+		book.entryDeleteButton.textContent = "[delete]"
 		book.index = index
+	}
+}
+
+function addListeners (book) {
+
+	if (!book.listenersAdded) {
+		book.listenersAdded = true
+		book.entryDeleteButton.addEventListener("click", ()=> deleteBook(book.index))
+		book.entryContainer.addEventListener("mouseover", ()=> {
+			book.entryDeleteButton.style.display = "block"
+			book.entryIcon.img.src = "assets/BookOpen.svg"
+		})
+		book.entryContainer.addEventListener("mouseout", ()=> {
+			book.entryDeleteButton.style.display = "none"
+			book.entryIcon.img.src = "assets/BookClosed.svg"
+		})
 	}
 }
 
@@ -104,6 +117,7 @@ function showDialogue () {
 	addBookDialog.showModal()
 }
 
+let inputForm = document.getElementById("add-book-form")
 let inputBookTitle = document.getElementById("add-book-dialog-title")
 let inputBookAuthor = document.getElementById("add-book-dialog-author")
 let inputBookPages = document.getElementById("add-book-dialog-pages")
@@ -116,14 +130,6 @@ inputAddButton.addEventListener("click", (e) => {
 	e.preventDefault()
 })
 
-// more parameters?
-function addDefaultBook (name, author) {
-	let newBook = new Book(name, author)
-	newBook.pages.value = 100
-	newBook.description.value = "Default book description"
-	newBook.readStatus.value = true
-	library.push(newBook)
-}
 
 function inputAddBook () {
 	let newBook = new Book(inputBookTitle.value, inputBookAuthor.value)
@@ -132,15 +138,35 @@ function inputAddBook () {
 	newBook.readStatus.value = inputBookReadStatus.checked // .value is not related to whether the box is checked. .checked is
 	library.push(newBook)
 	refreshLibrary()
+	inputForm.reset()
 	addBookDialog.close()
 }
 
-// for a possible color change function
-Number(12).toString(16)
-// converts the number 12 to its hexadecimal representation
+function addDefaultBook (name, author, pages, description, readStatus) {
+	let newBook = new Book(name, author)
+	newBook.pages.value = pages
+	newBook.description.value = description
+	newBook.readStatus.value = readStatus
+	library.push(newBook)
+}
 
-addDefaultBook("Le Miserable", "Hugo Boss")
-addDefaultBook("There and Back Again", "Bilbo Baggins")
-addDefaultBook("The Necronomicon", "Bruce Campbell")
+addDefaultBook(
+	"Elric of Melnibone"
+	, "Michael Moorcock"
+	, 752
+	, "Sword and sorcery with horror elements."
+	, false)
+addDefaultBook(
+	"Doom Guy"
+	, "John Romero"
+	, 384
+	, "Autobiography by the famed iD Software founder. Covers his life and games, from Commander Keen to Daikatana and then some."
+	, true)
+addDefaultBook(
+	"Dune"
+	, "Frank Herbert"
+	, 412
+	, "Extended and convoluted emperialism metaphor with some orientalism thrown in. Kind of slow tbh."
+	, true)
 
-
+refreshLibrary()
