@@ -2,37 +2,12 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0">
 		<title>Reading Stack</title>
 		<link href="meyerreset.css" rel="stylesheet">
 		<link href="style.css" rel="stylesheet">
 	</head>
 	<body>
-	
-	<main class="main-container" id="main-container">
-
-		<div class="top-bar">
-			<div class="top-left">
-					<div class="title">
-						<span>Reading Stack</span>
-					</div>
-			</div>
-
-			<div class="top-right">
-				<button id="add-book" onclick="showDialogue()">
-						+
-				</button>
-			</div>
-			
-		</div>
-
-		<div class="book-area" id="book-area">
-		</div>		
-
-		<div class="top-bar-sideline"></div>
-		<div class="top-bar-sideline top-bar-sideline-left"></div>
-
-	</main>
 
 	<dialog id="add-book-dialog">
 		
@@ -74,6 +49,29 @@
 		</form>
 
 	</dialog>
+	
+	<main class="main-container" id="main-container">
+
+		<div class="top-bar">
+			<div class="top-left">
+					<div class="title">
+						<span>Reading Stack</span>
+					</div>
+			</div>
+
+			<div class="top-right">
+				<button id="add-book" onclick="showDialogue()">
+						+
+				</button>
+			</div>
+			
+		</div>
+
+		<div class="book-area" id="book-area">
+		</div>		
+
+	</main>
+
 	
 	<script src="script.js"></script>
 	</body>

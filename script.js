@@ -1,7 +1,5 @@
 "use strict"
 
-console.log("hi")
-
 let library = []
 let bookArea = document.getElementById("book-area")
 
@@ -69,7 +67,7 @@ function refreshLibrary() {
 
 		book.name.element.textContent = book.name.value
 		book.author.element.textContent = book.author.value
-		book.pages.element.textContent = book.pages.value
+		book.pages.element.textContent = book.pages.value + " pages"
 		book.description.element.textContent = book.description.value
 		book.readStatus.element.textContent = book.readStatus.value ? "Read" : "Unread"
 		book.entryDeleteButton.textContent = "[delete]"
@@ -107,15 +105,11 @@ function appendEntryElements (target, ...elements) {
 
 function deleteBook (index) {
 	library.splice(index, 1)
-	console.log("index number " + index)
 	refreshLibrary()
 }
 
 let addBookDialog = document.getElementById("add-book-dialog")
-
-function showDialogue () {
-	addBookDialog.showModal()
-}
+let inputAddButton = document.getElementById("add-book-dialog-button")
 
 let inputForm = document.getElementById("add-book-form")
 let inputBookTitle = document.getElementById("add-book-dialog-title")
@@ -124,12 +118,20 @@ let inputBookPages = document.getElementById("add-book-dialog-pages")
 let inputBookDescription = document.getElementById("add-book-dialog-description")
 let inputBookReadStatus = document.getElementById("add-book-dialog-readstatus") 
 inputBookReadStatus.checked = false;
-let inputAddButton = document.getElementById("add-book-dialog-button")
 
 inputAddButton.addEventListener("click", (e) => {
 	e.preventDefault()
 })
 
+addBookDialog.addEventListener("click", (e)=>{
+	console.log(e.target)
+	// e.target != inputForm ? addBookDialog.close() : return
+	if (e.target == addBookDialog) addBookDialog.close()
+})
+
+function showDialogue () {
+	addBookDialog.showModal()
+}
 
 function inputAddBook () {
 	let newBook = new Book(inputBookTitle.value, inputBookAuthor.value)
@@ -154,7 +156,7 @@ addDefaultBook(
 	"Elric of Melnibone"
 	, "Michael Moorcock"
 	, 752
-	, "Sword and sorcery with horror elements."
+	, "Sword and sorcery with horror elements. Protagonist is a brooding king fighting to rise above the fascist brutality of his traditional culture."
 	, false)
 addDefaultBook(
 	"Doom Guy"
@@ -168,5 +170,17 @@ addDefaultBook(
 	, 412
 	, "Extended and convoluted emperialism metaphor with some orientalism thrown in. Kind of slow tbh."
 	, true)
+addDefaultBook(
+	"Radio Free Albemuth"
+	, "Phillip K. Dick"
+	, 214
+	, "Subversive paranoia with a gnostic subtext. The pro-communist aliens communicate through records. I should reread it."
+	, true)
+addDefaultBook(
+	"Dhalgren"
+	, "Samuel Delaney"
+	, 874
+	, "Something about a pocket of warped reality engulfing a town in California. Communications are cut off and holographic gangs roam the streets."
+	, false)
 
 refreshLibrary()
