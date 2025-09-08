@@ -86,10 +86,12 @@ function addListeners (book) {
 		book.entryContainer.addEventListener("mouseover", ()=> {
 			book.entryDeleteButton.style.display = "block"
 			book.entryIcon.img.src = "assets/BookOpen.svg"
+			book.entryContainer.className = "book-entry active"
 		})
 		book.entryContainer.addEventListener("mouseout", ()=> {
 			book.entryDeleteButton.style.display = "none"
 			book.entryIcon.img.src = "assets/BookClosed.svg"
+			book.entryContainer.className = "book-entry"
 		})
 	}
 }
